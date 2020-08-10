@@ -1,0 +1,230 @@
+%
+\documentclass[11pt,twoside,a4paper]{book}
+\usepackage[shorthands=off,english]{babel} % package for multilingual support
+
+\RequirePackage{iftex}
+\ifPDFTeX
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{lmodern}
+\else
+    \RequirePackage{fontspec} % UFT8 fonts for LuaLaTeX
+    \setmainfont{Latin Modern Roman}
+\fi
+
+\usepackage[ backend=biber
+            , style=numeric
+            , sortlocale=en_US
+            , bibencoding=UTF8
+            , maxcitenames=3
+            , maxbibnames=100
+            , giveninits=true
+            ]{biblatex}
+
+\usepackage{csquotes}
+\usepackage{xcolor}
+\definecolor{dark-red}{rgb}{0.6,0.15,0.15}
+\definecolor{dark-green}{rgb}{0.15,0.4,0.15}
+\definecolor{medium-blue}{rgb}{0,0,0.5}
+
+\usepackage{minted}
+\usepackage{pdfpages}
+\usepackage{float}
+\makeatletter
+% custom float style, derived from ruled
+% - caption is at the bottom
+% - spaces before and after figure are larger
+% - rules are thinner
+\newcommand\floatc@botruled[2]{{\@fs@cfont #1} #2\par}
+\newcommand\fs@botruled{\def\@fs@cfont{\bfseries}\let\@fs@capt\floatc@botruled
+    \def\@fs@pre{\hrule\kern0.5\abovecaptionskip}%
+    \def\@fs@post{\kern0.5\abovecaptionskip\hrule\kern0.5\abovecaptionskip}%
+    \def\@fs@mid{\kern0.5\abovecaptionskip \kern0.5\abovecaptionskip}%
+\let\@fs@iftopcapt\iffalse}
+\makeatother
+\floatstyle{botruled}
+\restylefloat{figure}
+\usepackage[labelfont=bf]{caption}
+
+\addtolength{\textfloatsep}{-0.3cm}
+
+
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage{siunitx}
+\usepackage{dsfont}
+\usepackage{bytefield}
+\usepackage{subcaption}
+
+\newcommand\todo[1]{\noindent\textcolor{red}{(#1)}}
+
+\newcommand{\FI}{Faculty of Informatics}
+\newcommand{\MU}{Masaryk University}
+
+\newcommand{\Jirik}{prof. RNDr. Jiří Barnat, Ph.D.}
+
+\newcommand{\thesistitle}{Something something}
+\newcommand{\thesissubtitle}{PhD Thesis Proposal}
+\newcommand{\thesisauthor}{Jan Mrázek}
+\newcommand{\thesisYearCity}{Brno, 2020}
+\newcommand{\thesisadvisor}{\Jirik}
+\newcommand{\cpp}[1]{\mintinline[breaklines]{cpp}{#1}}
+
+\addbibresource{bibliography.bib}
+
+% widdow and club fix
+\clubpenalty 10000
+\widowpenalty 10000
+
+\usepackage{setspace}
+\usepackage{placeins}
+
+\addtolength\textwidth{5pt}
+\addtolength\oddsidemargin{1cm}
+\addtolength\evensidemargin{-1cm}
+
+\usepackage[inline]{enumitem}
+\providecommand{\tightlist}{%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parskip}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}}
+
+\usepackage[ pdfauthor={Jan Mrázek}
+            , pdftitle={Something something},
+            , pdfsubject={PhD Thesis Proposal},
+            , plainpages=false
+            , pdfpagelabels
+            , unicode
+            , draft=false
+            , colorlinks=true
+            , linkcolor={dark-red}
+            , citecolor={dark-green}
+            , urlcolor={medium-blue}
+            , unicode=true
+            ]{hyperref}
+
+% \punct command allows to shift the footnotemark above a punctuation
+% Magic by František 'Fanda' Blahoudek
+\newlength{\spc} % declare a variable to save spacing value
+\newcommand{\punct}[1]{%
+  \settowidth{\spc}{#1}% set value of \spc variable to the width of #1 argument
+  \addtolength{\spc}{-1.8\spc}% subtract from \spc about two (1.8) of its values making its magnitude negative
+  #1% print the optional argument
+  \hspace*{\spc}% print an additional negative spacing stored in \spc after #1
+}
+
+\begin{document}
+
+% \DocLength{evensidemargin}
+% \DocLength{oddsidemargin}
+% \layout
+
+% initial pages from Mornfall + modifications
+
+\frontmatter
+\pagestyle{empty}
+
+\begin{center}
+    {\Large \sc \FI, \MU}
+    \vskip4em
+    \includegraphics[width = 4cm, height = 4cm] {logo_fi.pdf}
+    \vskip4em
+    {\begin{spacing}{1}
+        \Huge \bf \thesistitle
+    \end{spacing}}
+    \vskip2em
+    {\Large \sc \thesissubtitle}
+    \vskip4em
+    {\LARGE \bf \thesisauthor}
+    \vfill
+    {\hfill \large \thesisYearCity}
+\end{center}
+
+\cleardoublepage
+
+% only in print version!
+\iffalse %@ifprint
+
+\section*{Statement of an author of a school work}
+
+Student´s Name and UČO: Jan Mrázek, 422279
+
+\vskip1em
+
+I acknowledge that the Masaryk University (MU) is entitled in accordance with
+the law (Article 35 § 3 and 4 of the Copyright Act No. 121/2000 Sb.) to use for
+educational and other internal purposes on a non-commercial basis my thesis or
+my other school work, which I authored to fulfill my study obligations towards
+MU (my work).
+
+The use of my work for internal purposes includes the use of the original work
+as well as of its derivatives and might consists also of assigning of my work
+for additional processing to another student or a member of the MU academic
+community, or of making it available as a basis for a creation of a derivative
+thesis or other school work at MU. Any such use of my work will acknowledge my
+authorship, the original name and source of my work and will be conducted
+exclusively in order to further develop educational and other interests of MU
+related to further development and utilization of my work within its academic
+community.
+
+I also acknowledge my duty to inform MU at the latest upon the submission of my
+work about my intent to further develop or use my work at MU or elsewhere or
+about any other relevant issues related to my work.
+
+\vskip2em
+
+Brno, \today
+
+\vskip2em
+
+\hfill Student´s signature
+
+\cleardoublepage
+
+\fi
+
+\section*{Declaration} % from Mornfall
+Thereby I declare that this thesis is my original work, which I have
+created on my own. All sources and literature used in writing the
+thesis, as well as any quoted material, are properly cited, including
+full reference to its source.
+
+\vfill
+\textbf{Advisor:} \thesisadvisor
+
+\cleardoublepage
+
+\section*{Abstract}
+
+\todo{abstract}
+
+\section*{Keywords}
+
+\todo{keywords}
+
+\cleardoublepage
+
+\section*{Acknowledgements}
+
+\todo{acknowledgement}
+
+\cleardoublepage
+\thispagestyle{empty}
+
+\pagestyle{headings}
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+\mainmatter
+
+\input{introduction.tex}
+
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\markboth{}{} % avoid headers from last chapter in bibliography
+\printbibliography[heading=none]
+
+\appendix
+
+
+\end{document}
