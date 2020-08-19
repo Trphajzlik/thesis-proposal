@@ -63,49 +63,49 @@ the robot shape.
 
 \todo{Move to intruduction? Preliminaries? State of the art?}
 
-There is no single widely accepted interpretation of what fault tolerant systems
-should comply to. Usually, in a context of embedded system, a system is
-considered fault-tolerant when it is able to continue operating (possibly with
-worse performance) after one of its components fails
-\cite{DBLP:journals/micro/Johnson84}. The extent of fault-tolerance depends on
-what type of failures the system survives.
+% There is no single widely accepted interpretation of what fault tolerant systems
+% should comply to. Usually, in a context of embedded system, a system is
+% considered fault-tolerant when it is able to continue operating (possibly with
+% worse performance) after one of its components fails
+% \cite{DBLP:journals/micro/Johnson84}. The extent of fault-tolerance depends on
+% what type of failures the system survives.
 
-For example, we usually consider living organisms as highly fault-tolerant
-systems. If an animal looses an limb, it is able to adapt and perform similar
-tasks. E.g., a cat without a leg is still able to move and climb -- possibly
-slower, but it is able to survive.
+% For example, we usually consider living organisms as highly fault-tolerant
+% systems. If an animal looses an limb, it is able to adapt and perform similar
+% tasks. E.g., a cat without a leg is still able to move and climb -- possibly
+% slower, but it is able to survive.
 
-In the context of metamorphic robots, \textcite{DKbotDistr} discuss several
-aspects of fault-tolerance and for some of them they propose solutions. They
-distinguish several types of fault:
+% In the context of metamorphic robots, \textcite{DKbotDistr} discuss several
+% aspects of fault-tolerance and for some of them they propose solutions. They
+% distinguish several types of fault:
 
-\paragraph{Complete module malfunction,} where the module stops responding and
-acts passively. The usual assumption is that the other modules in the system can
-detect such module. This type of malfunction is probably the most mentioned one
-in the literature. The usual solution is to either drop or to ignore such
-modules and reconfigure into a new configuration
-\cite{DBLP:conf/ieeealife/Christensen07, DMotionCoord}.
+% \paragraph{Complete module malfunction,} where the module stops responding and
+% acts passively. The usual assumption is that the other modules in the system can
+% detect such module. This type of malfunction is probably the most mentioned one
+% in the literature. The usual solution is to either drop or to ignore such
+% modules and reconfigure into a new configuration
+% \cite{DBLP:conf/ieeealife/Christensen07, DMotionCoord}.
 
-\paragraph{Byzantine module malfunction,} where it is not easy to detect the
-module has failed -- e.g., the module can have a wrong sensor and it can report
-wrong data to other modules. The module can even be malicious. There is not much
-work on this type of malfunction in the context of metamorphic robots as far as
-we aware. However, in context of distributed systems in general, it is a vivid
-research topic. E.g., work by \textcite{DBLP:conf/osdi/CastroL99} could be
-adapted for metamorphic robots.
+% \paragraph{Byzantine module malfunction,} where it is not easy to detect the
+% module has failed -- e.g., the module can have a wrong sensor and it can report
+% wrong data to other modules. The module can even be malicious. There is not much
+% work on this type of malfunction in the context of metamorphic robots as far as
+% we aware. However, in context of distributed systems in general, it is a vivid
+% research topic. E.g., work by \textcite{DBLP:conf/osdi/CastroL99} could be
+% adapted for metamorphic robots.
 
-\paragraph{Actuator malfunction,} where the module control unit is fully
-functional, however, one or more of the modules actuators are either stuck
-in a position or spin freely. This type of malfunction was tackled by
-\textcite{DBLP:conf/romoco/VonasekONW15}.
+% \paragraph{Actuator malfunction,} where the module control unit is fully
+% functional, however, one or more of the modules actuators are either stuck
+% in a position or spin freely. This type of malfunction was tackled by
+% \textcite{DBLP:conf/romoco/VonasekONW15}.
 
-\paragraph{Explosion of the whole system} is a type of malfunction where the
-robot is broken down into pieces randomly spattered over the environment usually
-after a high energy impact. \textcite{DBLP:conf/iros/YimSSPDT07a} proposed a
-solution for automatic reassembly after explosion. They also discuss, that
-system explosion is a way of fault-avoidance. When a system can reassemble, it
-is desirable to include weak, re-attachable joints, which protect the individual
-modules.
+% \paragraph{Explosion of the whole system} is a type of malfunction where the
+% robot is broken down into pieces randomly spattered over the environment usually
+% after a high energy impact. \textcite{DBLP:conf/iros/YimSSPDT07a} proposed a
+% solution for automatic reassembly after explosion. They also discuss, that
+% system explosion is a way of fault-avoidance. When a system can reassemble, it
+% is desirable to include weak, re-attachable joints, which protect the individual
+% modules.
 
 In my research, I would like to focus on a partial module malfunction, since
 system explosion is more related to research about spatial localization and path

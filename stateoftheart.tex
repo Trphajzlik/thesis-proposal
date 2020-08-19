@@ -1,5 +1,192 @@
 \chapter{State of the Art}\label{chap:state-of-the-art}
 
-\section{Taxonomy of Modular Robots}
+A modular robotics is a way to build robots consisting of \emph{modules}. In
+context of this paper, modules are rather high-level pieces with a certain level
+of self-control instead of low-level components like individual actuators or
+sensors. It might even make sense to talk about modules as individual robots,
+which are used to build bigger robots. The modules have usually a limited set of
+capabilities -- often the functionality is so primitive, the modules cannot
+perform useful tasks on their own. However, when we join multiple modules, they
+can cooperate and, therefore, new capabilities of the system as a whole emerge.
+This idea probably first appeared in the work by
+\textcite{DBLP:conf/icra/FukudaK90}, where they introduced CEBOTs (Cellular
+Robotic System).
 
-\todo{There is a lot of old papers showing the platforms, relatively }
+\section{Taxonomy of Existing Modular Robots}
+
+Since the era of CEBOTs, many more projects followed and the research area split
+into two: smart (or programmable) matter and modular robotics. The smart matter
+aims at building very simple modules leveraging physical and chemical principles
+(imagine artificial atoms) in order to create blob of modules, which can
+reassemble into a different, usually solid, object based on an external input.
+Contrary, the modular robotics aims at building more complex modules, which are
+able of sophisticated self-organization (imagine artificial cells), which can
+form usually highly dynamic robots that can autonomously move and interact with
+their environment. Smart matter also aims at sub-millimeter modules, modular
+robotics aims at sub-centimeter modules \cite{DBLP:conf/ieeealife/Christensen07,
+1285597}. In the rest of this paper, we will omit smart matter and focus
+exclusively on modular robots.
+
+What distinguishes modular robots from swarm robotics is the ability of the
+modules to mechanically connect and inherently form a larger robot. The
+connection can be performed externally, e.g., by an operator, or the modules can
+connect on their own. Even the trend is to build self-reconfigurable robots,
+there are occasionally some exceptions, e.g., PetRo
+\cite{DBLP:conf/ro-man/Salem14}.
+
+There have been many more or less successful projects of self-reconfigurable
+modular robots since the CEBOTs. The projects feature various designs approaches
+from the capabilities of individual modules to the topology in which the modules
+connect. Most of the projects used metamorphic modules, i.e., there is only a
+single or a few types of modules in the system. We consider the following list
+as a nice representable sample of the various designs: Fracta
+\cite{DBLP:conf/icra/MurataKK94}, Molecule \cite{DBLP:conf/icra/KotayRVM98},
+Polybot \cite{DBLP:conf/icra/YimDR00}, M-TRAN
+\cite{DBLP:conf/icarcv/KurokawaKYTMK02}, Atron
+\cite{DBLP:conf/iros/JorgensenOL04}, Superbot \cite{DBLP:conf/iros/SalemiMS06},
+Molecube \cite{DBLP:journals/trob/ZykovMDL07}, Roombots
+\cite{DBLP:conf/icra/SprowitzBDI09}, Symbricator
+\cite{DBLP:journals/corr/abs-1109-2288}, SMORES \cite{DBLP:conf/iros/DaveyKY12},
+M-Blocks \cite{DBLP:conf/iros/RomanishinGR13}, ModRED
+\cite{DBLP:journals/ras/BacaHDND14}, HyMod \cite{DBLP:conf/dars/ParrottDG16} and
+Omni-Pi-tent \cite{DBLP:conf/taros/PeckTT19}.
+
+\textcite{4141032} distinguishes three categories of the robots based on the
+topology in which they connect. Each category has its own specific problems of
+control and makes some tasks easier than other:
+
+\paragraph{Lattice architecture} have its modules arranged in regular 3D grid --
+e.g., a cube or hexagonal grid. The modules are tightly packed together. Typical
+examples of such architectures are M-Blocks \cite{DBLP:conf/iros/RomanishinGR13}
+and Atron \cite{DBLP:conf/iros/JorgensenOL04}. The regular grid makes it easier
+to create a reconfiguration schedule and execute in parallel (for more details
+see Subsection \todo{ref}). However, reconfiguration is usually the only option
+for locomotion of such system, and, therefore, lattice architectures do not
+yield highly dynamic systems.
+
+\paragraph{Chain architecture} have its modules connected in a string or
+possibly in a tree. Typical examples of such architectures are Polybot
+\cite{DBLP:conf/icra/YimDR00} and Molecubes
+\cite{DBLP:journals/trob/ZykovMDL07}. This architecture allows for easy
+formation of limbs and arms, therefore, these robots usually interact well with
+the environment. Also even very simple controllers yield locomotion (via
+snake-like movements (see Subsection \todo{ref} for more details). The chains
+can also form space-filling curve, therefore, e.g., Molecubes, can form a
+lattice-like structures, while the underlying structure is linear.
+
+\paragraph{Hybrid architecture} allows for both arrangements of modules,
+therefore combines the advantages of both, possibly at the cost of increased
+complexity. Examples of such robots are M-TRAN~III
+\cite{DBLP:journals/ijrr/KurokawaTKKHM08}, Roombots
+\cite{DBLP:conf/icra/SprowitzBDI09}, SMORES \cite{DBLP:conf/iros/DaveyKY12},
+HyMod \cite{DBLP:conf/dars/ParrottDG16} and Omni-Pi-tent
+\cite{DBLP:conf/taros/PeckTT19}. We can perceive that the most recent trend is
+to build hybrid architectures. Especially SMORES are designed to be able to
+replicate arrangements of the other platforms, thus be as versatile as possible
+\cite{DBLP:conf/iros/DaveyKY12}.
+
+On top of the locomotion provided by the the inter-module interaction, some
+systems feature locomotion of the individual modules - e.g, by providing wheels
+(SMORES, HyMod) or tracks (Symbricator), which further makes the reconfiguration
+problem easier.
+
+\section{Planning and Control Challenge}
+
+\todo{There are some common challenges in robotics in general and modular robotics}
+
+\todo{Let's focus on the special ones for modular robots}
+
+\todo{Illustrate it on the problem of finding a dock to mate}
+
+\todo{Explain, why central control is bad}
+
+\todo{Show, how the robots can communicate and why sometimes it is bad.}
+
+\todo{Explain difference between reconfiguration and locomotion, say you will show examples later}
+
+\todo{Explain, common approches to controlling the robots in a distributed
+    manner. Present case studies and experiments in the following points:}
+
+\todo{Present gait tables and basic synchronization approaches for them }
+
+\todo{Present digital hormones}
+
+\todo{Present nested controllers}
+
+\todo{Also present the central solutions tackling the grand challenges - e.g. the SMORES navigation paper }
+
+
+\section{Fault-tolerance Challenge}
+
+There is no single widely accepted interpretation of what fault tolerant systems
+should comply to. Usually, in a context of embedded system, a system is
+considered fault-tolerant when it is able to continue operating (possibly with
+worse performance) after one of its components fails
+\cite{DBLP:journals/micro/Johnson84}. The extent of fault-tolerance depends on
+what type of failures the system survives.
+
+For example, we usually consider living organisms as highly fault-tolerant
+systems. If an animal looses an limb, it is able to adapt and perform similar
+tasks. E.g., a cat without a leg is still able to move and climb -- possibly
+slower, but it is able to survive.
+
+In the context of metamorphic robots, \textcite{DKbotDistr} discuss several
+aspects of fault-tolerance and for some of them they propose solutions. They
+distinguish several types of fault:
+
+\paragraph{Complete module malfunction,} where the module stops responding and
+acts passively. The usual assumption is that the other modules in the system can
+detect such module. This type of malfunction is probably the most mentioned one
+in the literature. The usual solution is to either drop or to ignore such
+modules and reconfigure into a new configuration
+\cite{DBLP:conf/ieeealife/Christensen07, DMotionCoord}.
+
+\paragraph{Byzantine module malfunction,} where it is not easy to detect the
+module has failed -- e.g., the module can have a wrong sensor and it can report
+wrong data to other modules. The module can even be malicious. There is not much
+work on this type of malfunction in the context of metamorphic robots as far as
+we are aware. However, in context of distributed systems in general, it is a
+vivid research topic. E.g., work by \textcite{DBLP:conf/osdi/CastroL99} could be
+adapted for metamorphic robots.
+
+\paragraph{Actuator malfunction,} where the module control unit is fully
+functional, however, one or more of the modules actuators are either stuck
+in a position or spin freely. This type of malfunction was tackled by
+\textcite{DBLP:conf/romoco/VonasekONW15}.
+
+\paragraph{Explosion of the whole system} is a type of malfunction where the
+robot is broken down into pieces randomly spattered over the environment usually
+after a high energy impact. \textcite{DBLP:conf/iros/YimSSPDT07a} proposed a
+solution for automatic reassembly after explosion. They also discuss, that
+system explosion is a way of fault-avoidance. When a system can reassemble, it
+is desirable to include weak, re-attachable joints, which protect the individual
+modules.
+
+\todo{This section misses more in-depth references for existing solutions}
+
+\section{Challenge of Reconfiguration}
+
+\todo{Present the basic types of tackling the problem}
+\todo{ Present state-space exploration and its optimization }
+\todo{ Show the old papers and results about meta-modules }
+\todo{ Show the "ultimate" paper claiming M-TRAN reconfiguration is NP hard }
+\todo{ Somewhere show the relation to inverse kinematics and the new SMORES paper}
+
+\section{Challenge of Locomotion}
+
+\todo{Not sure if this will be covered by control and planning or not}
+\todo{Present the special kinematics}
+
+\section{Mixed Software and Hardware Challenges}
+
+\todo{Raise question about hardware reliability}
+\todo{Raise question about firmware distribution}
+\todo{Raise question about security of such robots}
+
+% The system can be \emph{centrally controlled} by a single (and possibly
+% external) unit, or the distributed nature of the modules can be leveraged, and
+% therefore, the system can feature \emph{distributed control}. The centrally
+% controlled approach is considered as an easier one; however, it does not utilize
+% all the potential computational power of the modules and it is harder to make
+% the system fault-tolerant (due to the presence of a single point of failure in
+% the form of the control unit) compared to the distributed control.
