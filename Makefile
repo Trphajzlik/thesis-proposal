@@ -7,7 +7,7 @@ src = $(wildcard *.tex)
 all: thesis
 
 thesis: $(src) $(pdffigures) $(jpgfigures)
-	texfot latexmk -halt-on-error -pdf --shell-escape -g thesis.tex 2>&1
+	texfot latexmk -halt-on-error -pdf --shell-escape -g -f thesis.tex 2>&1
 
 thesis-print: thesis-print.tex $(src) $(pdffigures) $(jpgfigures)
 	texfot latexmk -halt-on-error -pdf --shell-escape -g thesis-print.tex 2>&1
