@@ -60,9 +60,9 @@ e.g., a cube or hexagonal grid. The modules are tightly packed together. Typical
 examples of such architectures are M-Blocks \cite{DBLP:conf/iros/RomanishinGR13}
 and Atron \cite{DBLP:conf/iros/JorgensenOL04}. The regular grid makes it easier
 to create a reconfiguration schedule and execute in parallel (for more details
-see Subsection \todo{ref}). However, reconfiguration is usually the only option
-for locomotion of such system, and, therefore, lattice architectures do not
-yield highly dynamic systems.
+see Subsection \ref{sec:chal-reconfig}). However, reconfiguration is usually the
+only option for locomotion of such system, and, therefore, lattice architectures
+do not yield highly dynamic systems.
 
 \paragraph{Chain architecture} have its modules connected in a string or
 possibly in a tree. Typical examples of such architectures are Polybot
@@ -70,9 +70,10 @@ possibly in a tree. Typical examples of such architectures are Polybot
 \cite{DBLP:journals/trob/ZykovMDL07}. This architecture allows for easy
 formation of limbs and arms, therefore, these robots usually interact well with
 the environment. Also even very simple controllers yield locomotion (via
-snake-like movements (see Subsection \todo{ref} for more details). The chains
-can also form space-filling curve, therefore, e.g., Molecubes, can form a
-lattice-like structures, while the underlying structure is linear.
+snake-like movements (see Subsection \ref{sec:chal-locomotion} for more
+details). The chains can also form space-filling curve, therefore, e.g.,
+Molecubes, can form a lattice-like structures, while the underlying structure is
+linear.
 
 \paragraph{Hybrid architecture} allows for both arrangements of modules,
 therefore combines the advantages of both, possibly at the cost of increased
@@ -172,7 +173,7 @@ software challenge}.
 In the following section, we will discuss state-of-the-art for each of the
 challenges individually.
 
-\section{Planning Challenge}
+\section{Planning Challenge}\label{sec:chal-planning}
 
 For the purposes of this thesis, we consider planning for modular robots as an
 effort to leverage the shape-changing ability of the self-reconfigurable robots
@@ -236,7 +237,12 @@ motion planning in \cite{DBLP:conf/icra/VonasekSKP13} using RRT
 specific configurations just like in the case of high-level planning for SMORES
 \cite{DBLP:journals/arobots/JingTYK18}.
 
-\section{Challenge of Reconfiguration}
+The current state-of-the-art in self-reconfigurable robot planning is making
+progress, however, it is still far away from being applicable and, e.g.,
+fulfilling the first grand challenge of modular robots
+\cite{DBLP:journals/corr/abs-1108-5543}.
+
+\section{Reconfiguration Challenge}\label{sec:chal-reconfig}
 
 There is a variety of work dealing with the reconfiguration problem. The work
 differs by problem specification, used approaches and a mathematical model of a
@@ -254,12 +260,16 @@ computation power of the individual modules.
 Exploration of the state-space of the system is a straightforward approach.
 However, as \textcite{DBLP:journals/jfr/ChirikjianPE96} showed, the number of
 possible configurations grows exponentially, therefore, direct explorations is
-infeasible even for small systems. \textcite{DBLP:conf/iros/AsadpourASI09}
-showed edit distance heuristics, that can improve performace of the search and,
-therefore, increase size of the configuration which is manageable by this
-approach. \textcite{DBLP:conf/monterey/BaarirHKR10} tackle the problem of large
-state-spaces by using a symbolic representations inspired from software model
-checking. All the work above demonstrates the results on MTRAN-like modules.
+infeasible even for small systems. \textcite{DBLP:conf/iros/Brandt06}
+successfully applied RRT (rapidly-exploring random tree) for small systems of
+ATRONs. \textcite{DBLP:conf/iros/AsadpourASI09} showed edit distance heuristics,
+that can improve performance of the search and, therefore, increase size of the
+configuration which is manageable by this approach. Similarly,
+\textcite{DBLP:journals/ral/KhodrMHBI19} recently proposed some new pruning and
+search heuristics. \textcite{DBLP:conf/monterey/BaarirHKR10} tackle the problem
+of large state-spaces by using a symbolic representations inspired from software
+model checking. All the work above demonstrates the results on MTRAN-like
+modules.
 
 Since the modules in a system are from the reconfiguration point of view
 indistinguishable from each other, we should treat isomorphic configuration as
@@ -278,7 +288,7 @@ connector graphs capture only topology, this approach produces only
 connect/disconnect actions. Hence, it might produce a plan which is not
 collision-free and cannot be executed due to physical limitations. Such plans
 are suitable for robots with good self locomotion (e.g., SMORES) but hard-to-use
-in a system lacking individual modules locomotion (e.g., M-BLOCKS or M-TRAN).
+in a system lacking individual modules locomotion (e.g., M-Blocks or M-TRAN).
 When the modules can move on their own, they can simply disconnect from the
 system, move to the target location, and connect there as presented in
 \cite{DBLP:journals/ral/LiuWY19}.
@@ -300,26 +310,29 @@ one module by one to the goal destination. The Pac Man algorithm was extended to
 3D surface a year later in \cite{DBLP:conf/wafr/ButlerR02}.
 \textcite{DBLP:journals/dc/WalterWA00} gives a distributed algorithm, which is
 however incomplete -- there exists configurations between it is not able to find
-reconfiguration path. \textcite{DBLP:conf/icra/VassilvitskiiYS02} present a
-distributed algorithm for reconfiguration of lattice type robots, which is
-complete with only one restriction: they use $2\times2\times2$ meta-modules for
-the reconfiguration. The initial and target configurations have to overlap at
-least on one meta-module. \textcite{DBLP:conf/ieeealife/Christensen07} adapt
-similar approaches for ATRONs. They use meta-module composed out of three
-modules. They compute reachable positions on the surface of a blob of modules
-and then move the meta-module along the shortest path on the surface. They can
-also move multiple modules in parallel. Later,
-\textcite{DBLP:journals/comgeo/AloupisBDDFIW13} presented asymptotically better
-algorithms for reconfiguration of lattice type robots using non-uniform
-meta-modules.
+reconfiguration path. \textcite{DBLP:conf/icra/VassilvitskiiYS02} present a more
+efficient distributed algorithm for reconfiguration of lattice type robots,
+which is complete with only one restriction: they use $2\times2\times2$
+meta-modules for the reconfiguration. The initial and target configurations have
+to overlap at least on one meta-module.
+\textcite{DBLP:conf/ieeealife/Christensen07} adapt similar approaches for
+ATRONs. They use meta-module composed out of three modules. They compute
+reachable positions on the surface of a blob of modules and then move the
+meta-module along the shortest path on the surface. They can also move multiple
+modules in parallel. Later, \textcite{DBLP:journals/comgeo/AloupisBDDFIW13}
+presented asymptotically better algorithms for reconfiguration of lattice type
+robots using non-uniform meta-modules. Additionally,
+\textcite{DBLP:conf/pdp/PirandaB16} present a distributed rule-based algorithm
+for reconfiguration of lattice type robots.
 
-The results above were not demonstrated on large scale in practice. Contrary to
-that, \textcite{DBLP:conf/iros/RomanishinMR19} present an online distributed
-algorithm for M-BLOCKS to reconfigure into a line, which they were able to
-demonstrate on physical robots in various conditions. Quite recently,
-\textcite{DBLP:journals/ras/HauserMLKBI20} presented and experiment, where 12
-Roombot modules reconfigure into a chair. The algorithm used for reconfiguration
-takes in account the limited strength of the joints.
+When reconfiguration using a distributed algorithm emerges from local behaviors,
+an essential part of the whole process is detection if the target configuration
+was reached. \textcite{DBLP:conf/icra/ButlerFRW02} present a distributed
+algorithm for the problem. The algorithm assume only the neighboring modules can
+excahnge messages. The algorithm runs in $\mathcal{O}(n^2)$ time. Later
+\textcite{DBLP:journals/ras/BacaWDN17} present another algorithm, which expects
+the modules in the configuration can communicate via broadcast (i.e., wireless
+communication).
 
 The approaches presented above yield deterministic reconfiguration plan.
 \textcite{4141032} appeled that stochastic reconfiguration approaches should be
@@ -329,45 +342,257 @@ minimalistic modular robots (e.g., Catoms \cite{DBLP:conf/aaai/KirbyCAPHMG05})
 but have not been widely adapted for \say{full-featured} modular robots we are
 interested in in this paper.
 
-% There are also approaches considering module position in space during the
-% reconfiguration. These are usually motivated by the locomotion of the whole
-% system of modular robots: \textcite{DBLP:conf/robotik/BonardiMSVI12} present some
-% locomotion primitives for Roombots, \textcite{mtranMotion} present an algorithm for
-% locomotion through reconfiguration of M-TRANs. \textcite{M-block-line} present a
-% reconfiguration to a line using M-BLOCKS considering the position of the modules
-% in space. Another approach is used by \textcite{Femtobots} -- they pre-synthesize
-% individual module locomotion on the surface of a given scaffold and then
-% consider to build larger configuration containing only these scaffolds.
+Overall, we can see that many approaches have been used to tackle the
+reconfiguration problem and several solid theoretical findings have been made.
+Though, we can still find open subproblems in this area. All the solutions
+presented above assume there are no environmental effects (e.g., gravity) and
+modules' joints have unlimited strength. \textcite{DBLP:journals/jr/SuzukiIKK11}
+present an algorithm to augment existing configuration to minimize mechanical
+stress. However, their work is not focused on reconfiguration between arbitrary
+configurations.
 
+In practice, the joints have limited strength and, e.g., the lattice structures
+do not match perfectly. This is discussed in quite recent work by
+\textcite{DBLP:journals/ras/HauserMLKBI20}, where they present an experiment in
+which 12 Roombots assemble themselves into a chair.
 
-\section{Challenge of Locomotion}
+Similarly, nearly none of the work deals with dynamics of the reconfiguration.
+\textcite{DBLP:conf/iros/RomanishinMR19} partially deals with the dynamics in
+the reconfiguration as M-Blocks rely on dynamic movements (caused by braking of
+fast spinning flywheel) to reconfigure.
 
-\todo{Not sure if this will be covered by control and planning or not}
-\todo{Present the special kinematics}
+Also, there is no known approach of computing a collision-free reconfiguration
+plan for chain and hybrid robots in distributed manner directly on the modules
+using their computation power. Therefore, we can see a recent trend in the
+reconfiguration: the target has shifted from finding the optimal reconfiguration
+plan to finding a feasible reconfiguration plan (possibly working only on a
+class of configurations), which can be computed more cheaply, possibly with
+online updates.
 
-\todo{Self-Reconfigurable Modular Robots – Hardware and Software Development in AIST - lattice is not good at movement}
+\section{Locomotion Challenge}\label{sec:chal-locomotion}
 
-\section{Control Challenge}
+The modules in self-reconfigurable systems are usually intentionally designed
+with limited set of capabilities and it is expected that new capabilities emerge
+when multiple modules join. Therefore, the modules often have no dedicated
+actuator for locomotion. Having no dedicated actuators makes the modules simpler
+and more suitable for usage as building blocks for larger robots, however, it
+presents an additional challenge of locomotion of individual modules and blobs
+of modules. Once a controller for locomotion is found, it can be used a motion
+primitive for planning as we showed in Section \ref{sec:chal-planning}.
 
-\todo{ Somewhere show the relation to inverse kinematics and the new SMORES paper}
+SMORES \cite{DBLP:conf/iros/DaveyKY12}, HyMod \cite{DBLP:conf/dars/ParrottDG16}
+and Omni-Pi-tent \cite{DBLP:conf/taros/PeckTT19} face the challenge of lomotion
+of individual modules by clever hardware design. Their modules do not have
+dedicated wheels, however, they have wheels attached to one of the robots joint.
+Such solutions allows for easy movement of individual modules (often referred as
+\emph{micro-locmotion} in literature). Similarly, Roombots
+\cite{DBLP:conf/icra/SprowitzBDI09} can use part of their module's hull as a
+wheel. M-Blocks do not have wheels, but the can jump and shoot themselves into a
+desired direction as a form of micro-locomotion
+\cite{DBLP:conf/icra/RomanishinGCR15}.
 
-\todo{Explain, why central control is bad}
+Lattice type modules are designed to fit a grid, therefore, they often have no
+body features which could serve a limb for movement, and, also they have modules
+without any joints (e.g., M-Blocks). Therefore, their modules cannot locomote on
+their own and can only move via reconfiguration \cite{1285597}. Such motion
+often resemble fluid flow. This was first demonstrated by
+\textcite{DBLP:conf/iros/YoshidaMKTKK01} on MTRANs. The authors manually created
+a locomotion plan for a thick bar of modules, where modules from the end of the
+bar crawl to the front. This procedure repeats and yields locomotion of the bar.
+The previous approach was further generalized by
+\textcite{DBLP:conf/icra/ButlerKRT02}.
+\textcite{DBLP:conf/ieeealife/Christensen07} present a locomotion based on
+reconfigurations for ATRONs. Their meta-modules can crawl on the surface of
+existing robot. Similarly as in the case of M-TRANs, the modules from back move
+to front. However, unlike M-TRANs, this procedure is fully automatic and has no
+hand-crafted gaits.
 
-\todo{Show, how the robots can communicate and why sometimes it is bad.}
+Chain and hybrid type modules have several degrees of freedom, thus they can use
+part of their bodies or other modules as limbs and form snake-like
+\cite{DBLP:conf/icra/YimDR00, DBLP:conf/iros/KamimuraMYKTK01,
+DBLP:journals/ijrr/KurokawaTKKHM08, DBLP:journals/arobots/JingTYK18}, crawl-like
+\cite{DBLP:conf/icra/YimDR00, DBLP:conf/iros/KamimuraMYKTK01,
+DBLP:journals/ijrr/KurokawaTKKHM08, DBLP:journals/arobots/JingTYK18}, walker
+\cite{DBLP:conf/iros/KamimuraMYKTK01, DBLP:journals/ijrr/KurokawaTKKHM08,
+mtranwalker} or rolling motion \cite{DBLP:journals/ijrr/KurokawaTKKHM08,
+DBLP:journals/ijrr/SastraCY09, DBLP:journals/arobots/JingTYK18}. Furthermore,
+\cite{DBLP:conf/iros/YimSSPDT07a} and \cite{DBLP:journals/ijrr/KurokawaTKKHM08}
+show simple crawling of either individual module or pairs of modules in the free
+space.
 
-\todo{Explain difference between reconfiguration and locomotion, say you will show examples later}
+Practically all platforms presented so far have a list of hand-crafted
+primitives for such motions. \textcite{DBLP:conf/isrr/TosunJKY15} present a tool
+to aid hand-crafting of controllers for locomotion. The tools allow for
+decomposing the controllers and turning them into library. It also gives means
+to validate the designed controller. Despite that, the hand-crafted locomotion
+plans do not scale well, thus automatic generation of them or omitting them
+completely is desireable.
 
-\todo{Explain, common approches to controlling the robots in a distributed
-    manner. Present case studies and experiments in the following points:}
+One approach for automatic generating locomotion plans is to use state-space
+search similarly like in the case of reconfiguration.
+\textcite{DBLP:conf/robotik/BonardiMSVI12} show this procedure using D*
+algorithm for locomotion of individual module in a space filled with passive
+mounting points. Such approach makes sense for Roombots as it is hard to
+manually create motion primitives due to the non-orthogonal arrangements of
+their axes. \textcite{DBLP:conf/dars/YoshidaKKMTK04} create locomotion and
+motion plans for M-TRANs using RRT. Similar approach was later used by
+\textcite{DBLP:conf/taros/VonasekKP12} for Symbricator.
 
-\todo{Present gait tables and basic synchronization approaches for them }
+Another approach is to apply machine learning for finding suitable locomotion
+controllers. \textcite{DBLP:conf/eh/BennettR00} use genetic programming for
+controller synthesis for 2D lattice-type robots. The controller is supposed to
+find a path through narrow passage. The authors design a simple language for the
+robots and perform mutations over it. Roombots also used genetic programming for
+finding locomotion gaits in free environment \cite{aydn_2010,
+DBLP:journals/procedia/PouyaAMI11}. \textcite{DBLP:journals/ras/ChristensenSS13}
+present a distributed learning approach to generate locomotion for ATRONs. In
+their setup, all modules run the same controller and based on externally
+received reword, they adapt. Furthermore, \textcite{DBLP:conf/iros/DuttaDN17}
+apply game theory to synthesize crawl-like gait for chain robots.
 
-\todo{Present digital hormones}
+\textcite{DBLP:conf/icra/LipsonP00} proposed rather utopic idea for machine
+learning on self-reconfigurable robots. They propose not to only apply machine
+learning to the controllers, but also apply it to the mechanical design of the
+modules itself and procude quick prototypes using 3D printers. After 20 years
+from the publication, the technogy advanced a lot, however, we are not aware of
+anyone trying to apply this approach in practice.
 
-\todo{Present nested controllers}
+Instead of predefined motions it is also possible to use emerging behavior of
+simple controllers of the modules. This approach often yields snake-like or
+caterpilar-like motions. This was demonstrated by \textcite{stoy2002global}
+further extended by them in \cite{DBLP:conf/icra/StoySW03}. The same authors
+also present an approach where they use identicall controllers which can switch
+roles during runtime in \cite{1159219} to produce locomotion.
+\textcite{gonzalez2006locomotion} present new types of locomotion based on
+sinusoidal patterns. Such solution scales well as the controllers are simple
+and independent. However, the pallette of such motions is limited. The following
+work mostly deals with execution and synchronization of such controllers, which
+we will discuss more in depth in the following Section \ref{sec:chal-control}.
 
-\todo{Also present the central solutions tackling the grand challenges - e.g. the SMORES navigation paper }
+\todo{Rework the previous paragraph and distinguish Phase automata and CPG?}
 
+Overall, the area of locomotion for self-reconfigurable robots is well explored
+and there are approaches to tackle the specifics of self-reconfigurable robots.
+However, this problem shares common open problems with general robotics like
+execution locomotion plans on physicals robots in real environment, where the
+robot has a limited knowledge of the enviroment based on sensors.
+
+\section{Control Challenge}\label{sec:chal-control}
+
+In the previous sections we discussed planning, reconfiguration and locomotion
+of the self-reconfigurable robots. The presented approaches give its output in
+the form of algorithms, plans, automata and more. For purposes of this paper, we
+mean by \emph{controlling} a robot an application of the former results. Note
+that in literature, the terms \emph{controlling} or \emph{controller} are often
+used in a wider meaning -- it covers reconfiguration, planning or locomoton. The
+application presents new challenges in the context of self-reconfigurable
+robots. The robots present a distributed system, therefore the challenges
+include problems of communication, synchronization and scalability of such
+solutions. Note that in the following text, we will focus mainly of specifics to
+robotic environment and omit general problems of distributed computing.
+
+The existing robotic systems use various means of communication, which states
+different requirements for the control approaches. These include two basic
+types:
+
+\paragraph{Broadcast and bus communcation} can be realized either
+wirelessly over radio waves (e.g., WiFi in the case of
+SMORES~\cite{DBLP:conf/iros/DaveyKY12}) or over a bus spanning thoughout the
+whole robotic system (e.g., CAN in the case of
+HyMod~\cite{DBLP:conf/dars/ParrottDG16}). Both of these types allow for simple
+broadcast, thus distribution of information and synchronization is trivial.
+
+However, both bus and wireless communication present a technical challenge.
+Widely used technologies like WiFi, Bluetooth or ZigBee are not designed for
+hundereds, possibly thousads, of agents spatialy placed near each other -- the
+shared medium will congest. The bus communication has the same limitation. Also,
+high-speed buses spanning through large robots present a challenge from
+technical point of view (parasitic inductance of the traces, impedance
+matching)~\cite{DBLP:conf/dars/ParrottDG16}.
+
+Nevertheless, wireless communication gives the ability for disconnected parts of
+the system to communicate. \textcite{DBLP:conf/iros/YimSSPDT07a} and
+\textcite{DBLP:journals/corr/abs-1109-2288} cleverly use IR transceivers not
+only to communicate between disjoint parts of the system, but also for
+localization and navigation.
+
+\paragraph{Point-to-point and hierarchical communcation} addresses the problem
+of shared medium by having a communcation link only between negihboring modules
+via connectors and thus, having separate medium between each pair of neighboring
+modules. Such solutions scale well, however, the modules need to be able to
+route the packets if module-to-module communication or broadcast is required.
+The routing increases latency of the communication and brings extra complexity
+to the module design.
+
+The module-to-module connection is often realized via IR transceivers as it can
+be also used for connector alignment and navigation.
+\cite{DBLP:conf/iros/YimSSPDT07a}. \textcite{DBLP:journals/corr/abs-1109-2288}
+cleverly use traditional Ethernet for communication between the Symbricator
+modules, which provides robust and fast connection lines. The routing is
+offloaded to Ethernet-switch ICs (therefore, does not introduce extra complexity
+to the modules).
+
+\bigskip
+
+When broadcast communcation is available, the simplest approach is to use
+central control either in the form of external entity (a server) or in the form
+of single master module. The master can run centralized algorithm and provides
+synchronization. Having a master, however, kills one of the appealing feature of
+the system -- it presents a single point of failure thus limits fault-tolerance.
+Also, the single master limits scalability of the system. The master can be
+authomatically elected by one of well known algorithms for leader election in
+distributed systems \cite{baca2016coordination}, thus mitigate the problem of
+single point of failure. Nevertheless, central control is widely used for
+protyping: e.g., \cite{DBLP:journals/ijrr/KurokawaTKKHM08,
+DBLP:conf/icra/TosunDJKCY18} use external control entity for experiments and
+\cite{superbotroller} use a master module.
+
+Therefore, the general aim is to introduce distributed solutions. We can find
+general solutions providing frameworks for distributed control in the
+literature, however, they are often either orientated on industrial automation
+or too heavy to deploy on simple modules. The popular Robotic Operating System
+\cite{DBLP:journals/corr/abs-1809-02595}, which aims for distributed real-time
+control, is usually consedered heavy, and thus the researchers look for more
+lighweit solutions for self-reconfigurable robots.
+
+Global synchronization among the modules in a systems allows to apply many
+traditional controllers formalisms including gait tables
+\cite{DBLP:conf/icarcv/KurokawaKYTMK02, DBLP:conf/iros/YimSSPDT07a},
+automata-based controllers \cite{DBLP:journals/procedia/PouyaAMI11,
+DBLP:journals/arobots/JingTYK18}, nested-controllers \cite{1159219} and more.
+
+We can find multiple solutions to the synchronization.
+\textcite{DBLP:journals/ijrr/ParkCTY08} use \emph{robotic bus} \cite{roboticbus}
+for synchronization. The synchronization is as essential part of the bus.
+\textcite{yim1994locomotion} proposes that each module should be equipped with
+internall clocks and they are occasionally synchronized among the modules. When
+an action should start, the start signal is equipped with a timestamp in the
+future when the action should start, so the broadcasting can complete in time.
+\textcite{stoy2002global} present a synchronization algorithm for periodic
+actions. The algorithm is roubus to loss of synchronization signals and the
+number of modules.
+
+Digital hormones present a biologically inspired approach to control, which can
+be agnostic of the number of modules in the system and communication faults. It
+also scales well. Digital hormones concept was probably first introduced by
+\textcite{DBLP:conf/agents/ShenLW00} and more extensions followed
+\cite{DBLP:conf/icra/SalemiSW01, DBLP:journals/trob/ShenSW02}. In a nutshell,
+digital hormones are messages passed between the robots just like the biologial
+ones. When a module receives a hormone, it can trigger various action. Also, the
+module can detect number of received hormones and send hormones to its
+neighbors. Hormone control is suitable for robots featuring point-to-point
+communication as it requires no routing (the hormone rules define the routing
+implicitly). \textcite{DBLP:conf/cec/HamannSSC10} introduced \emph{artificial
+homeostatic hormone system}, which allows for \say{infusion} of hormones inside
+the robot body, thus controlling it. This system is able of
+self-synchronization, which has proven to be roubust.
+\textcite{DBLP:conf/icra/MorenoG11} combined hormone-based approach with central
+pattern generators to achieve locomotion of chain type robots. The hormones
+carry feedback information from the sensors.
+
+Altough the hormone based approach seems to be promising, so far only a limited
+set of tasks was accomplished using it. Instead, we see that most of the work
+deals with traditional controllers supported by global synchronization.
 
 \section{Fault-tolerance Challenge}
 
@@ -427,10 +652,3 @@ modules.
 
 
 \section{Availability of various Robotic kits}
-% The system can be \emph{centrally controlled} by a single (and possibly
-% external) unit, or the distributed nature of the modules can be leveraged, and
-% therefore, the system can feature \emph{distributed control}. The centrally
-% controlled approach is considered as an easier one; however, it does not utilize
-% all the potential computational power of the modules and it is harder to make
-% the system fault-tolerant (due to the presence of a single point of failure in
-% the form of the control unit) compared to the distributed control.
