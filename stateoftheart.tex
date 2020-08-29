@@ -606,26 +606,31 @@ what type of failures the system survives.
 For example, we usually consider living organisms as highly fault-tolerant
 systems. If an animal looses an limb, it is able to adapt and perform similar
 tasks. E.g., a cat without a leg is still able to move and climb -- possibly
-slower, but it is able to survive.
+slower, but it is able to survive. As we outline in the beginning of this
+chapter, the ability to build fault-tolerant robots is highly desirable and
+building self-reconfigurable metamorphic robots can be a viable way.
 
-In the context of metamorphic robots, \textcite{DKbotDistr} discuss several
-aspects of fault-tolerance and for some of them they propose solutions. They
-distinguish several types of fault:
+We already presented several solutions to planning, locomotion and control of
+such robots and we briefly outlined their robustness to faults. In the rest of
+this section, we provide another view on fault-tolerance; we will look on
+various types of faults in modular system and recap state-of-the-art for them.
+
+\cite{DKbotDistr} and \cite{4141032} discuss several aspects of
+fault-tolerance. We can distinguish several types of fault:
 
 \paragraph{Complete module malfunction,} where the module stops responding and
 acts passively. The usual assumption is that the other modules in the system can
 detect such module. This type of malfunction is probably the most mentioned one
-in the literature. The usual solution is to either drop or to ignore such
+in literature. The usual solution is to either drop or to ignore such
 modules and reconfigure into a new configuration
-\cite{DBLP:conf/ieeealife/Christensen07, DMotionCoord}.
+\cite{DMotionCoord, DBLP:conf/ieeealife/Christensen07, DBLP:conf/iros/DaveyKY12}.
 
 \paragraph{Byzantine module malfunction,} where it is not easy to detect the
-module has failed -- e.g., the module can have a wrong sensor and it can report
+module has failed -- e.g., the module can have a faulty sensor so it will report
 wrong data to other modules. The module can even be malicious. There is not much
 work on this type of malfunction in the context of metamorphic robots as far as
-we are aware. However, in context of distributed systems in general, it is a
-vivid research topic. E.g., work by \textcite{DBLP:conf/osdi/CastroL99} could be
-adapted for metamorphic robots.
+we are aware. However, in context of distributed systems and sensor networks in
+general, it is a vivid research topic.
 
 \paragraph{Actuator malfunction,} where the module control unit is fully
 functional, however, one or more of the modules actuators are either stuck
@@ -640,15 +645,71 @@ system explosion is a way of fault-avoidance. When a system can reassemble, it
 is desirable to include weak, re-attachable joints, which protect the individual
 modules.
 
-\todo{This section misses more in-depth references for existing solutions}
+\section{Real-world Challenges}\label{sec:mixed-challenges}
 
-\section{Mixed Software and Hardware Challenges}\label{sec:mixed-challenges}
+So far, we focused on the theoretical challenges of the self-reconfigurable
+robots. However, to validate the theory and to make these robots practical, we
+have to also tackle the practical, more engineering challenges.
 
-\todo{Docking!}
-\todo{Raise question about hardware reliability}
-\todo{Raise question about firmware distribution}
-\todo{Raise question about security of such robots}
-\todo{Point that we can solve all above individually, but we lack a single platform offering all of them and we also suck at miniaturization a making cheap modules}
+The first and the most obvious one is the challenge of hardware miniaturization.
+Various researches claim, that we should build target at roughly 1cm modules
+\cite{1285597, DBLP:conf/ieeealife/Christensen07}. Otherwise, we will not be
+able to build complex enough and small enough robots out of them. Contrary to
+that, the authors of Roombots suggest to build larger robots, around 10~cm, to
+make them strong and powerfull enough to interact with everday objects
+\cite{DBLP:conf/icra/SprowitzBDI09}. Most of today modules fits to size around
+10 cm (e.g., Roombots, SMORES) or 6 cm (e.g., M-Blocks, Molecubes). The smallest
+module so far are Femtobots \cite{Femtobots} with size less than 1~mm. However,
+these modules are rather suitable for smart-matter due to their limited
+capabilities.
 
+Directily with the hardware miniaturization comes the challengeof connecting the
+modules via connectors. Connectors are the essential part of the robots. They
+have to be strong enough to support large robotic structures and small enough to
+fit inside the module. Basically every platform we introduced so far comes with
+its custom connector. We currently conside the SMORES's EP-FACE
+\cite{DBLP:conf/iros/TosunDLY16}, HyGen \cite{DBLP:conf/iros/ParrottDG14} and
+our RoFICoM \cite{DBLP:conf/iros/MrazekB19} as the most advance connectors for
+self-reconfigurable robots so far.
 
-\section{Availability of various Robotic kits}
+In addition to miniaturization cames the question, whether the current advances
+in control can be applied to physical robots due to the limited computation
+power. \textcite{DBLP:journals/ral/Trenkwalder19} discusses the computation
+power of recently released miniature robots and gives nice overview on what can
+and what cannot be computed on the robots. Currently, the algorithms allowing
+for interaction with the environment, such as computer-vision and continuous
+environment mapping, are practically impossible to compute on miniature robots.
+
+If we ever deploy self-reconfigurable robots to the real-world, we will also
+have to tackle the question of security. \textcite{DBLP:conf/icas/HigginsTM09}
+rais question about security of swarm robots and discusses what types of
+attack could be performed on such robots. In our opinion the same applies to
+modular self-reconfigurable robots. There is no active research in this are as
+far as we are aware -- probably this area is far away from being applied to
+practice to raise these questions.
+
+Currently, many of the challenges we can solve individually. However, we still
+lack a single \say{full-featured} self-reconfigurable platform, which would
+solve most of the problems simullteanously.
+
+\section{Reproducibility of Results}\label{sec:reproducibility}
+
+As we have briefly outlinen in Chapter \ref{chap:introduciton}, we percieve the
+advance in this field quite splattered and incoherent due to lack of proper
+reproducibility. The theoretical paper we encountered gives proofs of their
+claims, thus we can consider them as reproducible. However, papers providing
+sophisticated software solutions often lack public implementation. Thus, that
+are outside the original team of authors cannot build on top existing results.
+
+Similarly, when papers introduce hardware solutions, e.g., in the form of
+robotic platforms, they do not provide technical documentation, CAD models or
+bill of materials. This is even the case of papers which contribution is the
+design of an easy-to-build and low cost robots \cite{DBLP:conf/robio/YuLW17}. We
+also contacted autohors of several platforms. The usual response was that the
+designs are not worth publishing (due to poor organization and missing
+structure), the authors did not thought about publishing them or the designs are
+confidentia. To our knowledge, the only exception is the project Dtto
+\cite{otrebla333} and the project Symbricator
+\cite{DBLP:journals/corr/abs-1109-2288}, where we were able to dig some
+technical specification in the form of master thesis in archives. However,
+proper central resource is missing.
