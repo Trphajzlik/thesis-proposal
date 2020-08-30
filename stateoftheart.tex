@@ -39,17 +39,98 @@ modular robots since the CEBOTs. The projects feature various designs approaches
 from the capabilities of individual modules to the topology in which the modules
 connect. Most of the projects used metamorphic modules, i.e., there is only a
 single or a few types of modules in the system. We consider the following list
-as a nice representable sample of the various designs: Fracta
-\cite{DBLP:conf/icra/MurataKK94}, Molecule \cite{DBLP:conf/icra/KotayRVM98},
-Polybot \cite{DBLP:conf/icra/YimDR00}, M-TRAN
-\cite{DBLP:conf/icarcv/KurokawaKYTMK02}, Atron
-\cite{DBLP:conf/iros/JorgensenOL04}, Superbot \cite{DBLP:conf/iros/SalemiMS06},
-Molecube \cite{DBLP:journals/trob/ZykovMDL07}, Roombots
-\cite{DBLP:conf/icra/SprowitzBDI09}, Symbricator
+as a nice representable sample of the various designs (see Figure
+\ref{fig:robots} for their photos): Fracta \cite{DBLP:conf/icra/MurataKK94},
+Molecule \cite{DBLP:conf/icra/KotayRVM98}, Polybot
+\cite{DBLP:conf/icra/YimDR00}, M-TRAN \cite{DBLP:conf/icarcv/KurokawaKYTMK02},
+Atron \cite{DBLP:conf/iros/JorgensenOL04}, Superbot
+\cite{DBLP:conf/iros/SalemiMS06}, Molecube \cite{DBLP:journals/trob/ZykovMDL07},
+Roombots \cite{DBLP:conf/icra/SprowitzBDI09}, Symbricator
 \cite{DBLP:journals/corr/abs-1109-2288}, SMORES \cite{DBLP:conf/iros/DaveyKY12},
 M-Blocks \cite{DBLP:conf/iros/RomanishinGR13}, ModRED
 \cite{DBLP:journals/ras/BacaHDND14}, HyMod \cite{DBLP:conf/dars/ParrottDG16} and
 Omni-Pi-tent \cite{DBLP:conf/taros/PeckTT19}.
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/molecube.jpg}
+        \caption{Molecule}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/mtran.jpg}
+        \caption{M-TRAN}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/polybot.jpg}
+        \caption{Polybot}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/atron.jpg}
+        \caption{Atron}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/superbot.jpg}
+        \caption{Superbot}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/molecube.png}
+        \caption{Molecube}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/roombot.jpg}
+        \caption{Roombots}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/replicator.jpg}
+        \caption{Symbricator}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/SMORES.jpg}
+        \caption{SMORES}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/mblocks.jpg}
+        \caption{M-Blocks}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/hymod.jpg}
+        \caption{HyMod}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/omnipitent.png}
+        \caption{Omni-Pi-tent}
+    \end{subfigure}
+
+
+    \caption{Photos of existing metamorphic self-reconfigurable systems. All
+    images are sourced from the corresponding publications.}
+    \label{fig:robots}
+\end{figure}
+
 
 \textcite{4141032} distinguishes three categories of the robots based on the
 topology in which they connect. Each category has its own specific problems of
@@ -87,7 +168,7 @@ replicate arrangements of the other platforms, thus be as versatile as possible
 \cite{DBLP:conf/iros/DaveyKY12}.
 
 On top of the locomotion provided by the the inter-module interaction, some
-systems feature locomotion of the individual modules - e.g, by providing wheels
+systems feature locomotion of the individual modules -- e.g, by providing wheels
 (SMORES, HyMod) or tracks (Symbricator), which further makes the reconfiguration
 problem easier by allowing the modules to move on their own in the space without
 interaction with the rest of the modules. A good example of such solution is
@@ -114,15 +195,18 @@ Section \ref{sec:mixed-challenges}.
 Let us introduce the challenges and illustrate them on a simple case. Suppose
 there is a robot composed out of the modules in a simple environment. See figure
 \ref{fig:arena} for illustration of the environment. There are two elevated
-ramps. On one of them, there is red cube. The robot is supposed to move the cube
-from one ramp to another. There is also a power socket after a narrow passage.
-The modules do not have enough energy to complete the whole task.
+ramps. On one of them, there is red cube. The robot starts inside the red circle
+and the robots is supposed to move the cube from one ramp to another
+(destination area is marked yellow). There is also a power socket (green) after
+a narrow passage formed out of blue walls. The modules do not have enough energy
+to complete the whole task.
 
 \begin{figure}[!t]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/arena.jpg}
+    \includegraphics[width=\textwidth]{figures/arena.pdf}
     \caption{The example environment for illustration of various challenges of
-    self-reconfigurable robots.}
+    self-reconfigurable robots. The arrows in the right images shows the
+    solution outlined in the text.}
     \label{fig:arena}
 \end{figure}
 
@@ -668,9 +752,33 @@ modules via connectors. Connectors are the essential part of the robots. They
 have to be strong enough to support large robotic structures and small enough to
 fit inside the module. Basically every platform we introduced so far comes with
 its custom connector. We currently conside the SMORES's EP-FACE
-\cite{DBLP:conf/iros/TosunDLY16}, HyGen \cite{DBLP:conf/iros/ParrottDG14} and
+\cite{DBLP:conf/iros/TosunDLY16}, HiGen \cite{DBLP:conf/iros/ParrottDG14} and
 our RoFICoM \cite{DBLP:conf/iros/MrazekB19} as the most advance connectors for
-self-reconfigurable robots so far.
+self-reconfigurable robots so far (see Figure \ref{fig:connectors}).
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/epface.jpg}
+        \caption{EP-FACE}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/higen.jpg}
+        \caption{HiGen}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.315\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{figures/roficom.jpg}
+        \caption{RoFICoM}
+    \end{subfigure}
+
+    \caption{Photos of connector. All images are sourced from the corresponding publications.}
+    \label{fig:connectors}
+\end{figure}
 
 In addition to miniaturization cames the question, whether the current advances
 in control can be applied to physical robots due to the limited computation
