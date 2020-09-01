@@ -31,6 +31,7 @@
 \usepackage{minted}
 \usepackage{pdfpages}
 \usepackage{float}
+\usepackage{tikzpagenodes}
 \makeatletter
 % custom float style, derived from ruled
 % - caption is at the bottom
@@ -126,11 +127,14 @@
 \frontmatter
 \pagestyle{empty}
 
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north west)}]
+    \node[anchor=north west,xshift=3cm,yshift=-2cm]{\includegraphics[width = 9cm, height = 5cm, keepaspectratio] {logo_fi_new.pdf}};
+\end{tikzpicture}
 \begin{center}
-    {\Large \sc \FI, \MU}
-    \vskip4em
-    \includegraphics[width = 4cm, height = 4cm] {logo_fi.pdf}
-    \vskip4em
+    % {\Large \sc \FI, \MU}
+    % \vskip4em
+    % \includegraphics[width = 4cm, height = 4cm] {logo_fi.pdf}
+    \vskip8em
     {\begin{spacing}{1}
         \Huge \bf \thesistitle
     \end{spacing}}
