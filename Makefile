@@ -3,6 +3,7 @@ xcffigures = $(wildcard figures/*.xcf)
 pdffigures = $(svgfigures:.svg=.pdf)
 jpgfigures = $(xcffigures:.xcf=.jpg)
 src = $(wildcard *.tex)
+texts = $(src:.tex=.txt)
 
 all: thesis
 
@@ -19,6 +20,8 @@ thesis-print.tex: thesis.tex
 		-e 's/\\iffalse.*%@ifprint/\\iftrue/' \
 		$< > $@
 
+text: $(texts)
+
 .PHONY: clean
 
 clean-thesis:
@@ -27,6 +30,7 @@ clean-thesis:
 clean-figures:
 	rm -f $(pdffigures)
 	rm -f $(jpgfigures)
+	rm $(texts)
 
 clean: clean-thesis clean-figures
 
@@ -35,3 +39,6 @@ clean: clean-thesis clean-figures
 
 %.jpg: %.xcf
 	util/xcfToJpg.sh $< $@
+
+%.txt: %.tex
+	detex $< | sed ':a;N;$$!{/\n$$/!ba}; s/[[:blank:]]*\n[[:blank:]]*/ /g' > $@

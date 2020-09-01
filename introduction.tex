@@ -1,28 +1,29 @@
 \chapter{Introduction}\label{chap:introduciton}
 
 Metamorphic self-reconfigurable robotics is one of the future challenges the
-field of robotics is facing. The goal in this field is to design and develop an
+field of robotics is facing. This field aims to design and develop an
 autonomous robotic construction kit, which would allow for the construction of
 sophisticated robots designed for specific tasks from smaller, simpler, and
 unified autonomous units (modules). The advantage of such the approach lies in
 its universality -- a single collection of modules can be reused multiple times
-to fulfill a plethora of various tasks.
+to fulfill a plethora of tasks.
 
-Moreover, the specific feature of metamorphic robots is that a bunch of
-connected modules may autonomously change their mutual position and
-interconnection to take a different physical shape, the ability referred to as
+Moreover, the specific feature of metamorphic robots is that many of connected
+modules may autonomously change their mutual position and interconnection to
+take a different physical shape, the ability referred to as
 self-reconfiguration. As a result, various tasks may be completed within a
 single mission by a single robot as it appropriately adapts its shape to fit the
 individual mission requirements. Also, the self-reconfiguration property could
-bring us closer to rapid prototyping of robots. We could treat robots just like
-we treat software nowadays -- the developers just write robot description and by
-\say{compiling} it, the robot self-assembles. Such ability would also allow for
-version-control of robots with an easy option to roll-back to an older revision
-without the necessity of keeping a physical inventory of older versions.
+bring us closer to the rapid prototyping of robots. We could treat robots just
+like we treat software nowadays -- the developers just write robot description
+,and by \say{compiling} it, the robot self-assembles. Such ability would also
+allow for version-control of robots with an easy option to roll-back to an older
+revision without the necessity of keeping a physical inventory of older
+versions.
 
 Metamorphic robots might also be a solution for building fault-tolerant robots.
-A robotic system built out of large number of uniform modules could easily
-recover from a module failure just like living organism survives the death of
+A robotic system built out of a large number of uniform modules could easily
+recover from a module failure, just like a living organism survives the death of
 individual cells.
 
 Although the idea of metamorphic robots seems to be an appealing approach to
@@ -34,35 +35,33 @@ approach to modules' mass control, or the process of space miniaturization and
 cost reduction \cite{4141032}.
 
 \textcite{4141032} formulated challenges of the field of that time -- this
-include hardware design, planning and control challenges. Most of the challenges
-withstands to date. Few years later, \textcite{DBLP:journals/corr/abs-1108-5543}
-propose the \emph{first grand challenge of modular robots}, after which
-completion, we could consider advances in this field sufficient for practical
-applications. They propose a scenario where 100 modules are placed in an unknown
-area with walls and obstacles for 100 days. The modules are required to remain
-active during the whole time without human intervention. The environment
-provides power sources, however, they are not directly reachable by a single
-module. Also, the location and the number of the power sources slowly change in
-time so the robotic system has to adapt. To our knowledge, nobody was able to
-finish the challenge so far. \todo{The closest to finishing the grand challenge
-are} are the projects Symbricator \textcite{DBLP:conf/syscon/LeviMRKVSLC14} and
-SMORES \textcite{DBLP:journals/arobots/JingTYK18}. Nevertheless, the research in
-this field is vivid, and new results come every year.
+includes hardware design, planning, and control challenges. Most of the
+challenges withstand to date. A few years later,
+\textcite{DBLP:journals/corr/abs-1108-5543} propose the \emph{first grand
+challenge of modular robots}; after which completion, we could consider advances
+in this field sufficient for practical applications. They propose a scenario
+where 100 modules are placed in an unknown area with walls and obstacles for 100
+days. The modules are required to remain active during the whole time without
+human intervention. The environment provides power sources, however, they are
+not directly reachable by a single module. Also, the location and the number of
+power sources slowly change in time, so the robotic system has to adapt. To
+our knowledge, nobody was able to finish the challenge so far. Nevertheless, the
+research in this field is vivid, and new results come every year.
 
 While we can find results that deal with the theory of metamorphic robots and
 works that deal with the physical implementation of metamorphic modules or
 platforms, we see the advance in this field quite splattered and incoherent.
 Research results that would interconnect both aspects of the problem appear
 rarely. The situation is caused mainly by the fact that the physical design of
-metamorphic modules is in many cases publicly unavailable, hence irreproducible.
-As a result, researchers that are outside the original team of authors
-practically cannot reuse the platform and build their research on top of the
-previously known results.  Any reproducible and trustworthy research thus has to
-be made either from scratch or based only on some guessed assumptions of what is
+metamorphic modules is, in many cases, publicly unavailable, hence
+irreproducible. As a result, researchers outside the original team of authors
+cannot reuse the platform and build their research on top of the previously
+known results.  Any reproducible and trustworthy research thus has to be made
+either from scratch or based only on some guessed assumptions of what is
 practical and realistic in case the researcher has no physical platform at hand.
 Both cases significantly damper the research in the field.
 
-In the rest of the thesis proposal, we first provide a general overview on the
+In the rest of the thesis proposal, we first provide a general overview of the
 area of metamorphic self-reconfigurable robots and present state-of-the-art in
 the relevant subareas in Chapter \ref{chap:state-of-the-art}. Then we present
 the selected challenges in the area of distributed and fault-tolerant control of
@@ -70,6 +69,6 @@ metamorphic robots I would like to tackle during my PhD study. We also give a
 time schedule for my study in this chapter. In the Chapter \ref{chap:results} we
 describe results we achieved so far and present \emph{RoFI} -- a new platform of
 distributed metamorphic robots that is open-hardware and open-source, hence
-almost freely available to anyone interested. Motivation behind this platform is
-mainly to bridge the gap between theoretical and practical research in the
-area.
+almost freely available to anyone interested. The motivation behind this
+platform is mainly to bridge the gap between theoretical and practical research
+in the area.
