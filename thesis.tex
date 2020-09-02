@@ -23,12 +23,14 @@
 
 \usepackage{csquotes}
 \usepackage{dirtytalk}
+\usepackage[shortcuts]{extdash}
 \usepackage{xcolor}
 \definecolor{dark-red}{rgb}{0.6,0.15,0.15}
 \definecolor{dark-green}{rgb}{0.15,0.4,0.15}
 \definecolor{medium-blue}{rgb}{0,0,0.5}
 
 \usepackage{minted}
+\usepackage{changepage}
 \usepackage{pdfpages}
 \usepackage{float}
 \usepackage{tikzpagenodes}
@@ -55,10 +57,9 @@
 \usepackage{xspace}
 \usepackage{siunitx}
 \usepackage{dsfont}
-\usepackage{bytefield}
 \usepackage{subcaption}
 
-\newcommand\todo[1]{\noindent\textcolor{red}{(#1)}}
+% \newcommand\todo[1]{\noindent\textcolor{red}{(#1)}}
 
 \newcommand{\FI}{Faculty of Informatics}
 \newcommand{\MU}{Masaryk University}
@@ -78,6 +79,7 @@
 \clubpenalty 10000
 \widowpenalty 10000
 
+
 \usepackage{setspace}
 \usepackage{placeins}
 
@@ -92,6 +94,7 @@
     \setlength{\topsep}{0pt}%
     \setlength{\partopsep}{0pt}}
 
+\PassOptionsToPackage{hyphens}{url}
 \usepackage[ pdfauthor={Jan Mrázek}
             , pdftitle={Fault-tolerance for Metamorphic Robots},
             , pdfsubject={PhD Thesis Proposal},
@@ -203,17 +206,47 @@ full reference to its source.
 
 \section*{Abstract}
 
-\todo{abstract}
+Metamorphic self-reconfigurable robotics is one of the future challenges the
+field of robotics is facing. This field aims to design and develop an autonomous
+robotic construction kit, which would allow for the construction of
+sophisticated robots designed for specific tasks from smaller, simpler, and
+unified autonomous units (modules). Such an approach to robot construction
+should yield versatility, easy prototyping, easy self-repair, and high-degree
+fault-tolerance in theory. In practice, the state-of-the-art is far from
+reaching these goals.
+
+In our research, we focus on design techniques of controllers for these
+highly-fault tolerant robots. More specifically, a robot assembled from multiple
+modules should not stop its operation when one or more modules in the system
+start to provide corrupted data (e.g., from a faulty sensor).  We will advance
+the state-of-the-art in this area by introducing design techniques that are
+configuration-agnostic.
+
+We also address the struggle of metamorphic robots with the research
+reproducibility in our work.  We provide an open-hardware robotic kit -- the
+RoFI platform -- which is easy to obtain and build; thus, it can serve
+conveniently as a platform for reproducible experiments. RoFI combines the
+state-of-the-art in this area in a single platform and advances it by
+introducing formal platform specification, which dictates modules' shape,
+suitable for reconfiguration in dense lattice structures.
 
 \section*{Keywords}
 
-\todo{keywords}
+robots, metamorphic robots, modular, fault-tolerant, distributed
 
-\cleardoublepage
+\vfill
 
 \section*{Acknowledgements}
 
-\todo{acknowledgement}
+\noindent \emph{“The ultimate inspiration is deadline.”}
+
+\hfill — Nolan Bushnell, invertor of Pong, and founder of Atari
+
+\vskip4em
+
+\noindent Thank you all who provided me enough inspiration and \say{inspiration}
+to work on RoFIs. I need it. A lot. And as you can see, it was worth it.
+
 
 \cleardoublepage
 \thispagestyle{empty}
@@ -228,13 +261,18 @@ full reference to its source.
 \input{aim.tex}
 \input{results.tex}
 
+\begin{adjustwidth}{-0.5cm}{-0.5cm}
+    \sloppy % Just don't care if the bibliography is sloppy. Just don't overflow...
+    \chapter*{Bibliography}
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \markboth{}{} % avoid headers from last chapter in bibliography
+    \printbibliography[heading=none]
+\end{adjustwidth}
 
-\chapter*{Bibliography}
-\addcontentsline{toc}{chapter}{Bibliography}
-\markboth{}{} % avoid headers from last chapter in bibliography
-\printbibliography[heading=none]
+\part*{Publications}
+\addcontentsline{toc}{part}{Publications}
 
-\appendix
-
+\addcontentsline{toc}{section}{RoFICoM -- First Open-Hardware Connector for Metamorphic Robots}
+\includepdf[pages=-]{paper-roficom.pdf}
 
 \end{document}

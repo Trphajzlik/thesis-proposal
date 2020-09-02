@@ -26,11 +26,11 @@ text: $(texts)
 
 clean-thesis:
 	latexmk -c
+	rm -f $(texts)
 
 clean-figures:
 	rm -f $(pdffigures)
 	rm -f $(jpgfigures)
-	rm $(texts)
 
 clean: clean-thesis clean-figures
 
