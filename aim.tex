@@ -1,16 +1,16 @@
 \chapter{Aim of the Work}
 
 As we discussed in Chapter \ref{chap:introduciton}, metamorphic
-self-reconfigurable robots have several properties, making them an appealing
-direction for future robotics trends. Those include versatility, fast
+self-reconfigurable robots have several properties, which makes them an
+appealing direction for future robotics trends. Those include versatility, fast
 prototyping, and a high level of fault-tolerance. However, in the current
 state-of-the-art, we are far from reaching these properties in practice. As we
 showed in Chapter \ref{chap:state-of-the-art}, the research in this area is
-broad and vivid. Nevertheless, there are plenty of challenges and open-problems to
-tackle.
+broad and vivid. Nevertheless, there are plenty of challenges and open-problems
+to tackle.
 
 We want to focus on finding ways to control metamorphic robots in
-a fault-tolerant manner via distributed control in our research from all the
+a~fault-tolerant manner via distributed control in our research from all the
 challenges that metamorphic robots present. We further describe our goals in the
 following text.
 
@@ -32,28 +32,28 @@ of SMORES \cite{DBLP:conf/iros/DaveyKY12} responded that it would be possible to
 cooperate and try our solutions on their robots at their facility, which is not
 convenient.
 
-Therefore, as a by-product of the PhD, study we expect to develop an
+Therefore, as a by-product of the PhD study, we expect to develop an
 open-hardware and open-source platform for metamorphic distributed robots. This
 platform should serve as a tool for demonstrating our research outcomes, which
 allows others to build their robots and reproduce our results easily. Also,
-being the first open platform, should serve as a research tool for others in
+being the first open platform, it should serve as a research tool for others in
 the area.
 
 The platform, called the RoFI platform, is part of the study that was advanced
-the most so far. We introduce more in detail in Chapter \ref{chap:results}.
+the most so far. We introduce it more in detail in Chapter \ref{chap:results}.
 
 \section{Fault-Tolerant Distributed Control for RoFI}
 
 We want to omit the reconfiguration part from the control and mainly focus on
 designing fault-tolerant controllers that perform a given task without changing
-the robot shape. Therefore, as a result, distributed controllers are expected to
-be designed since they should offer a more feasible path towards fault tolerance
-than centralized approaches.
+the robot's shape. Therefore, as a result, distributed controllers are expected
+to be designed since they should offer a more feasible path towards fault
+tolerance than centralized approaches.
 
 We expect to focus on a partial module malfunction since the system explosion is
 more related to research about spatial localization and path planning than
 distributed control. Similarly, complete module malfunction is probably better
-solved by reconfiguration as distributed control has no other option to deal
+solved by reconfiguration as distributed control has no other option how to deal
 with a completely malfunctioned module than to ignore it.
 
 A robot without sensors cannot interact with the environment and can only follow
@@ -105,7 +105,7 @@ experiments, the authors use a loop robot to roll forward (see Figure
 
 \textcite{superbotroller} perform two experiments on loop rolling: the first one
 without any communication between modules (the modules act purely based on
-observations from their accelerometers) and the second one with a centralized
+observations from their accelerometers) and the second one with a~centralized
 controller, where the master module controls the other modules.
 
 \textcite{DBLP:journals/ijrr/SastraCY09} perform a centrally controlled
@@ -115,7 +115,7 @@ modules as feedback.
 
 Once we replicate the experiments, we would like to propose new controllers for
 this configuration. The overall goal of the redesign is to explore the problem
-of fault-tolerance on well-defined case a possibly find a concept of control
+of fault-tolerance on well-defined case and possibly find a concept of control
 worth generalizing to an arbitrary configuration. We plan to introduce the
 following improvements over the state-of-the-art:
 \begin{itemize}
@@ -152,7 +152,7 @@ shows, it is hard to apply.
 
 Nevertheless, in both approaches, we would like to leverage system dynamics to
 move faster and  be able to steer compared to state-of-the-art. Suitable
-inspiration could be taken from cable robots, which often resemble the
+inspiration could be taken from cable robots which often resemble the
 configuration used in this case study and thus, deal with similar problems in
 locomotion \cite{DBLP:conf/iros/Hustig-SchultzS16, DBLP:conf/iros/CeraA18}. If
 we manage to distribute sensor feedback well, it could open a possibility for
@@ -162,8 +162,8 @@ the loop to roll on bumpy terrain or stairs.
 
 The second case study should directly build on the results of the first one. Our
 goal is to take a non-trivial configuration (e.g., the walker in Figure
-\ref{fig:example_spider}) and apply my findings on it to perform synchronous
-execution of a movement yielding locomotion by walking on a flat surface. The
+\ref{fig:example_spider}) and apply our findings on it to perform synchronous
+execution of the movement yielding locomotion by walking on a flat surface. The
 goal of this study is to help us find generalizable approaches for control.
 
 If we use the leader-election approach, this case study will focus on efficiency
@@ -197,7 +197,7 @@ The plan of my future study and research activities is following:
     \item[January 2022 -- August 2022]
         Application of the findings in context of complex configurations.
     \item[September 2022 -- January 2023]
-        Summarizing my research and writing of the PhD thesis.
+        Summarizing my research and writing the PhD thesis.
     \item[January 2023]
         Defense of the PhD thesis.
 \end{description}
